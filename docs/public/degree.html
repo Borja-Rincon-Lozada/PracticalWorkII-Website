@@ -1,58 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Degree</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFV • Practical Work II — Degree</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f1424;
-      color: #f2f4ff;
-    }
+    <style>
+      :root {
+        --bg: #0f1424;
+        --panel: #151b2f;
+        --text: #f2f4ff;
+        --muted: #b8bdd6;
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #2f6bff;
+        --radius: 14px;
+      }
 
-    header, footer {
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+    /* ===== Topbar (igual línea que index/contact) ===== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
+      background: rgba(15,20,36,.92);
+      border-bottom: 1px solid var(--border);
       padding: 12px 16px;
-      border-bottom: 1px solid rgba(255,255,255,.12);
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
 
-    nav a {
-      margin-left: 10px;
-      color: #b8bdd6;
-      text-decoration: none;
+    .topbar__brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 220px;
     }
 
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
+    .topbar__title{
+      font-weight:700;
+      font-size:1rem;
+      line-height:1.1;
     }
-  </style>
-</head>
 
-<body>
-  <header>
-    <strong>UFV • Practical Work II</strong>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./degree.html">Degree</a>
-      <a href="./contact.html">Contact</a>
-      <a href="./net.html">Net</a>
-    </nav>
-  </header>
+    .topbar__subtitle{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.1;
+    }
 
-  <main>
-    <h1>Degree</h1>
-    <p>
-      This page will describe the structure of my degree and the subjects studied.
-    </p>
-  </main>
+    .topbar__nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
 
-  <footer>
-    © 2025 • UFV
-  </footer>
-</body>
+    .topbar__link{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:10px;
+    }
+
+    .topbar__link:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    .topbar__link--active{
+      background: rgba(47,107,255,.18);
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,.35);
+    }
+
+    .topbar__logo{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
+    }
+
+    .topbar__logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
+      display:block;
+    }
+      /* ===== Page ===== */
+      main { padding-top: 7.5rem; }
+
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 18px auto 40px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      /* ===== Left: mini table of contents ===== */
+      .aside h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+      }
+
+      .aside p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 0.95rem;
+      }
+
+      .aside a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 12px;
+        color: var(--muted);
+        border: 1px solid rgba(255,255,255,0.10);
+        background: rgba(255,255,255,0.03);
+        margin-bottom: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .aside a:hover {
+        color: var(--text);
+        background: rgba(255,255,255,0.07);
+      }
+
+      .aside a.active {
+        color: var(--text);
+        border-color: rgba(47,107,255,0.40);
+        background: rgba(47,107,255,0.14);
+      }
+
+      /* ===== Right: content ===== */
+      .hero {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(700px 280px at 20% 0%, rgba(47,107,255,0.20), transparent 60%),
+          radial-gradient(700px 280px at 90% 30%, rgba(255,255,255,0.06), transparent 60%),
+          var(--panel);
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+
+      .hero__kicker {
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
+      }
+
+      .hero__title {
+        margin: 6px 0 8px;
+        font-size: 1.7rem;
+        line-height: 1.15;
+      }
+
+      .hero__text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 85ch;
+      }
+
+      .section {
+        display: none;
+      }
+      .section.active {
+        display: block;
+      }
+
+      .section h2 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .section p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* Years grid */
+      .years {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .year {
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 14px;
+        background: rgba(255,255,255,0.03);
+        overflow: hidden;
+      }
+
+      .year__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 12px;
+        cursor: pointer;
+        user-select: none;
+        gap: 10px;
+        border-bottom: 1px solid rgba(255,255,255,0.10);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .year__title {
+        font-weight: 800;
+      }
+
+      .year__tag {
+        font-size: 0.9rem;
+        color: var(--muted);
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.03);
+        border-radius: 999px;
+        padding: 6px 10px;
+        white-space: nowrap;
+      }
+
+      .year__body {
+        padding: 10px 12px 12px;
+        display: none;
+      }
+
+      .year.open .year__body {
+        display: block;
+      }
+
+      .subjects {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+
+      .subject {
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 12px;
+        padding: 10px 10px;
+        background: rgba(255,255,255,0.02);
+      }
+
+      .subject h4 {
+        margin: 0 0 4px;
+        font-size: 1rem;
+      }
+
+      .subject p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.4;
+        font-size: 0.95rem;
+      }
+
+      .subject p a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* Footer */
+      .footer {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.08);
+        margin-top: 18px;
+        border-radius: 14px;
+      }
+
+      .footer__left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer__left a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .footer__left a:hover { background: rgba(255,255,255,0.08); }
+
+      .footer__left img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer__right {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 950px) {
+        .layout { grid-template-columns: 1fr; }
+        .years { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__title">UFV • Practical Work II</div>
+        <div class="topbar__subtitle">Personal Website</div>
+      </div>
+
+      <nav class="topbar__nav">
+        <a class="topbar__link" href=".././index.html">Home</a>
+        <a class="topbar__link" href="./about.html">About</a>
+        <a class="topbar__link topbar__link--active" href="./degree.html">Degree</a>
+        <a class="topbar__link" href="./fce.html">FCE</a>
+        <a class="topbar__link" href="./topic.html">Topic</a>
+        <a class="topbar__link" href="./net.html">Net</a>
+        <a class="topbar__link" href="./contact.html">Contact</a>
+
+        <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+          <img src="../images/ufv_logo.png" alt="UFV logo" />
+        </a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <div class="layout">
+        <!-- Aside -->
+        <aside class="card aside">
+          <h3>Table of contents</h3>
+          <p>Jump to the main parts of this page.</p>
+
+          <a class="toc-link active" href="#purpose" onclick="openSection('purpose', this); return false;">Purpose</a>
+          <a class="toc-link" href="#structure" onclick="openSection('structure', this); return false;">Structure</a>
+          <a class="toc-link" href="#subjects" onclick="openSection('subjects', this); return false;">Subjects</a>
+
+
+        </aside>
+
+        <!-- Content -->
+        <section>
+          <div class="hero">
+            <div class="hero__kicker">Degree overview</div>
+            <h1 class="hero__title">Computer Engineering + Business Analytics</h1>
+            <p class="hero__text">
+              This degree had been eliminated from our collage, but this doesn't mean it is a waste of time and money.
+              It has a lot of job opportunities because of the approach made by the combination of Busyness Analytics and Computer Engineering.
+              Also we have several references of elder students about how this degree is not as bad as it seems after the elimination of the degree.
+            </p>
+          </div>
+
+          <!-- Purpose -->
+          <section id="purpose" class="card section active">
+            <h2>Purpose</h2>
+            <p>
+            The main purpose of this degree is to integrate two of the degrees with a proffesional projection expected to go to the moon. 
+              This by incorporating learning through challenges  of different sciences (Law, Business, Economics and Government). 
+              For us to have the capacity to face problematics related to new digital era.
+            </p>
+          </section>
+
+          <!-- Structure -->
+          <section id="structure" class="card section">
+            <h2>Structure</h2>
+            <p>
+              You can understand the structure in two ways:
+              <br /><br />
+              <b>By degree:</b> Business & Data Analytics is the “base”, and Computer Engineering adds the
+              technical layer on top. 
+              <br /><br />
+              <b>By years:</b> The double degree is distributed across multiple years. Most years include
+              subjects from both areas, and the last stage focuses more on the engineering side. It is set to be completed in 5 years and a half. 
+              That half year is because of the collage, a different approach to us in our first part of the first year of the degree, leading us to make an
+              extra half year to catch up.
+            </p>
+          </section>
+
+          <!-- Subjects -->
+          <section id="subjects" class="card section">
+            <h2>Subjects (by year)</h2>
+            <p>
+              Click a year to expand it.
+            </p>
+
+            <div class="years" id="years">
+              <!-- Year 1 -->
+              <article class="year open">
+                <div class="year__head" onclick="toggleYear(this)">
+                  <div class="year__title">Year 1</div>
+                  <div class="year__tag">Foundations</div>
+                </div>
+                <div class="year__body">
+                  <ul class="subjects">
+                    <li class="subject">
+                      <h4>Fundamentals of Computer Engineering</h4>
+                      <p>Computer Engineering • <a href="./fce.html">More info</a></p>
+                    </li>
+                    <li class="subject"><h4>Logic and Critical Thinking</h4><p>Humanities</p></li>
+                    <li class="subject"><h4>Foundations of Data Science and Big Data</h4><p>Data</p></li>
+                    <li class="subject"><h4>Technological Tools for Business and Data Analytics</h4><p>Data</p></li>
+                    <li class="subject"><h4>Financial Accounting</h4><p>Mathematics / Business</p></li>
+                    <li class="subject"><h4>Maths for Engineering II</h4><p>Mathematics</p></li>
+                    <li class="subject"><h4>Electronics and Computer Technology</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>College foundations (Economy / Business / Law / Government)</h4><p>College</p></li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Year 2 -->
+              <article class="year">
+                <div class="year__head" onclick="toggleYear(this)">
+                  <div class="year__title">Year 2</div>
+                  <div class="year__tag">Data + Math</div>
+                </div>
+                <div class="year__body">
+                  <ul class="subjects">
+                    <li class="subject"><h4>Microeconomy</h4><p>Economics</p></li>
+                    <li class="subject"><h4>Introduction to Statistics and Probability</h4><p>Mathematics</p></li>
+                    <li class="subject"><h4>History of Science and Technology</h4><p>Humanities</p></li>
+                    <li class="subject"><h4>Anthropology</h4><p>Humanities</p></li>
+                    <li class="subject"><h4>Data Governance and Management</h4><p>Data</p></li>
+                    <li class="subject"><h4>Big Data Technology I</h4><p>Data</p></li>
+                    <li class="subject"><h4>Data Sources</h4><p>Data</p></li>
+                    <li class="subject"><h4>Discrete Mathematics</h4><p>Computer Engineering • Math</p></li>
+                    <li class="subject"><h4>Introduction to Programming</h4><p>Computer Engineering • Programming</p></li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Year 3 -->
+              <article class="year">
+                <div class="year__head" onclick="toggleYear(this)">
+                  <div class="year__title">Year 3</div>
+                  <div class="year__tag">Systems</div>
+                </div>
+                <div class="year__body">
+                  <ul class="subjects">
+                    <li class="subject"><h4>Data Structures and Algorithms</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>Computer Architecture and Organization</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>Operating Systems</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>Data Analytics (Advanced)</h4><p>Data</p></li>
+                    <li class="subject"><h4>Cloud Computing</h4><p>Data / Infrastructure</p></li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Year 4 -->
+              <article class="year">
+                <div class="year__head" onclick="toggleYear(this)">
+                  <div class="year__title">Year 4</div>
+                  <div class="year__tag">Projects</div>
+                </div>
+                <div class="year__body">
+                  <ul class="subjects">
+                    <li class="subject"><h4>Web Development</h4><p>Programming</p></li>
+                    <li class="subject"><h4>Projects I</h4><p>Projects</p></li>
+                    <li class="subject"><h4>Software Engineering I</h4><p>Programming</p></li>
+                    <li class="subject"><h4>Networks and Distributed Systems</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>Artificial Intelligence</h4><p>Computer Science</p></li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Year 5 -->
+              <article class="year">
+                <div class="year__head" onclick="toggleYear(this)">
+                  <div class="year__title">Year 5</div>
+                  <div class="year__tag">Final stage</div>
+                </div>
+                <div class="year__body">
+                  <ul class="subjects">
+                    <li class="subject"><h4>Projects II</h4><p>Projects</p></li>
+                    <li class="subject"><h4>Software Engineering II</h4><p>Programming</p></li>
+                    <li class="subject"><h4>Security</h4><p>Computer Science</p></li>
+                    <li class="subject"><h4>Final Degree Project</h4><p>Capstone</p></li>
+                    <li class="subject"><h4>External Academic Internships</h4><p>Internship</p></li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </section>
+
+           <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="../images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="../images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
+    </footer>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      function openSection(id, linkEl) {
+        // Sections
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((s) => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+
+        // Aside links
+        const links = document.querySelectorAll(".toc-link");
+        links.forEach((a) => a.classList.remove("active"));
+        if (linkEl) linkEl.classList.add("active");
+
+        // Scroll to top of content (nice UX)
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function toggleYear(headEl) {
+        const yearCard = headEl.closest(".year");
+        yearCard.classList.toggle("open");
+      }
+
+      function scrollToYears() {
+        const el = document.getElementById("years");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    </script>
+  </body>
 </html>
