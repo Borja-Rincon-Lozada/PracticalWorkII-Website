@@ -2,132 +2,480 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UFV • Practical Work II — About</title>
 
   <style>
-    :root {
-      --bg: #0f1424;
-      --panel: #151b2f;
-      --text: #f2f4ff;
-      --muted: #b8bdd6;
-      --border: rgba(255,255,255,.12);
-      --accent: #2f6bff;
-      --radius: 12px;
+    /* ===== Base (simple) ===== */
+    :root{
+      --bg:#0f1424;
+      --panel:#151b2f;
+      --panel2:#11172a;
+      --text:#f2f4ff;
+      --muted:#b8bdd6;
+      --border:rgba(255,255,255,.12);
+      --accent:#2f6bff;
+      --radius:14px;
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
 
-    body {
-      margin: 0;
+    body{
+      margin:0;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a{ color: inherit; }
 
-    /* ===== Topbar ===== */
-    .topbar {
+    /* ===== Topbar (igual línea que index/contact) ===== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
       background: rgba(15,20,36,.92);
       border-bottom: 1px solid var(--border);
       padding: 12px 16px;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
 
-    .topbar__title {
-      font-weight: 700;
-      font-size: 1rem;
+    .topbar__brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 220px;
     }
 
-    .topbar__nav {
-      display: flex;
-      gap: 10px;
+    .topbar__title{
+      font-weight:700;
+      font-size:1rem;
+      line-height:1.1;
     }
 
-    .topbar__link {
-      padding: 6px 10px;
-      border-radius: 8px;
-      color: var(--muted);
+    .topbar__subtitle{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.1;
     }
 
-    .topbar__link--active {
-      background: rgba(47,107,255,.18);
+    .topbar__nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .topbar__link{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:10px;
+    }
+
+    .topbar__link:hover{
+      background: rgba(255,255,255,.06);
       color: var(--text);
     }
 
-    /* ===== Main ===== */
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
+    .topbar__link--active{
+      background: rgba(47,107,255,.18);
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,.35);
     }
 
-    .card {
+    .topbar__logo{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
+    }
+
+    .topbar__logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
+      display:block;
+    }
+
+    /* ===== Layout ===== */
+    .page{
+      width: min(1050px, calc(100% - 32px));
+      margin: 18px auto 40px;
+    }
+
+    /* Banner simple (cambia bastante respecto al anterior) */
+    .banner{
+      background: linear-gradient(120deg, rgba(47,107,255,.22), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .banner__row{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .avatar{
+      width:84px;
+      height:84px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+    }
+
+    .banner__title{
+      margin:0;
+      font-size: 1.9rem;
+      line-height:1.15;
+    }
+
+    .banner__desc{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    /* Botones sencillos */
+    .actions{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      text-decoration:none;
+      font-weight:700;
+      border-radius: 12px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      display:inline-block;
+    }
+
+    .btn--primary{
+      background: var(--accent);
+      border-color: transparent;
+      color:#fff;
+    }
+
+    .btn--ghost{
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn:hover{
+      background: rgba(255,255,255,.06);
+    }
+
+    .btn--primary:hover{
+      background: rgba(47,107,255,.85);
+    }
+
+    /* Contenido en 2 columnas sencillas (sin grid avanzado) */
+    .row{
+      display:flex;
+      gap:14px;
+      margin-top: 14px;
+      align-items:flex-start;
+    }
+
+    .col-main{ flex: 1; }
+    .col-side{ width: 320px; }
+
+    .card{
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
-    }
-
-    h1 {
-      margin-top: 0;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      margin-top: 40px;
       padding: 16px;
-      border-top: 1px solid var(--border);
-      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p{
+      margin:0;
       color: var(--muted);
-      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* “Timeline” sencilla para que cambie sin complicarse */
+    .timeline{
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .timeline li{
+      padding: 10px 0 10px 14px;
+      border-left: 2px solid rgba(255,255,255,.14);
+      position: relative;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .timeline li::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background: rgba(47,107,255,.9);
+      position:absolute;
+      left:-6px;
+      top: 16px;
+      box-shadow: 0 0 0 3px rgba(47,107,255,.18);
+    }
+
+    .muted{ color: var(--muted); }
+
+    /* CV area simple */
+    .cv{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      margin-top: 10px;
+    }
+
+    .cv a{
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 10px;
+      padding: 8px 10px;
+      display:inline-block;
+      color: var(--text);
+    }
+
+    .cv a:hover{
+      background: rgba(255,255,255,.06);
+    }
+
+    .cv img{
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    /* Social simple */
+    .social{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    .social a{
+      width: 42px;
+      height: 42px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+    }
+
+    .social a:hover{
+      background: rgba(255,255,255,.08);
+    }
+
+    .social img{
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display:block;
+    }
+
+    /* Footer */
+    .footer{
+      border-top: 1px solid var(--border);
+      padding: 14px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      background: rgba(0,0,0,.08);
+      margin-top: 18px;
+      border-radius: var(--radius);
+    }
+
+    .footer__left{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .footer__left img{
+      width:22px;
+      height:22px;
+      display:block;
+    }
+
+    .footer__right{
+      color: var(--muted);
+      font-size:.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .row{ flex-direction: column; }
+      .col-side{ width: 100%; }
     }
   </style>
 </head>
 
 <body>
-
   <!-- Topbar -->
   <header class="topbar">
-    <div class="topbar__title">UFV • Practical Work II</div>
+    <div class="topbar__brand">
+      <div class="topbar__title">UFV • Practical Work II</div>
+      <div class="topbar__subtitle">Personal Website</div>
+    </div>
+
     <nav class="topbar__nav">
-      <a class="topbar__link" href="../index.html">Home</a>
+      <a class="topbar__link" href=".././index.html">Home</a>
       <a class="topbar__link topbar__link--active" href="./about.html">About</a>
       <a class="topbar__link" href="./degree.html">Degree</a>
+      <a class="topbar__link" href="./fce.html">FCE</a>
+      <a class="topbar__link" href="./topic.html">Topic</a>
+      <a class="topbar__link" href="./net.html">Net</a>
       <a class="topbar__link" href="./contact.html">Contact</a>
+
+      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+        <img src="../images/ufv_logo.png" alt="UFV logo" />
+      </a>
     </nav>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <section class="card">
-      <h1>About me</h1>
+  <main class="page">
+    <!-- Banner -->
+    <section class="banner">
+      <div class="banner__row">
+        <img class="avatar" src="../images/pfp.jpg" alt="Profile photo" />
+        <div>
+          <h1 class="banner__title">About me</h1>
+          <p class="banner__desc">
+            My name is Borja Rincón Lozada. I study Computer Engineering + Business Analytics at UFV.
+            Despite my occasional laziness, I'm quite curious about AI development in a near future and where can we 
+            go as a society with AI involved in plenty aspects of our daily life.
+          </p>
+        </div>
+      </div>
 
-      <p>
-        My name is Borja Rincón Lozada and I am a student of
-        Computer Engineering and Business Analytics at UFV.
-      </p>
-
-      <p>
-        This section will include personal information, interests
-        and background related to my studies and goals.
-      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href="./contact.html">Contact</a>
+       
+      </div>
     </section>
+
+    <!-- Content row -->
+    <div class="row">
+      <!-- Main -->
+      <section class="col-main">
+        <div class="card">
+          <h2>Who I think I am</h2>
+          <p>
+            I see myself as a common person. I enjoy sharing experiences with other people,
+            but I especially like everything related to informatics. That is one of the reasons
+            I chose this degree. But seeing myself as common for me, is not that deep, we are all similar in something.
+            The decisions you make and how  you face the consecuences is what makes you unique.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Who I really want to be</h2>
+          <p>
+            I want to be someone who enjoys their routine. I don’t want to wake up every day
+            and struggle because of a job I don’t like. I want to minimize regrets and help others
+            enjoy their routine too.
+          </p>
+        </div>
+
+        <div class="card" id="cv">
+          <h2>Curriculum Vitae</h2>
+          <p class="muted">You can download my CV and see a small preview image.</p>
+
+          <div class="cv">
+            <a href="../images/CV.png" target="_blank" rel="noopener">Download my CV</a>
+        
+          </div>
+        </div>
+      </section>
+
+      <!-- Side -->
+      <aside class="col-side">
+        <div class="card">
+          <h2>Quick facts</h2>
+          <ul class="timeline">
+            <li><strong class="muted">Degree:</strong> Computer Engineering + Business Analytics</li>
+            <li><strong class="muted">University:</strong> UFV</li>
+            <li><strong class="muted">Interests:</strong> AI, football, technology</li>
+            <li><strong class="muted">Goal:</strong> build skills and projects</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Social media</h2>
+          <p class="muted">You can find me here:</p>
+
+          <div class="social">
+            <a href="https://www.instagram.com/brjx.rncn/" target="_blank" rel="noopener">
+              <img src="../images/instagram.png" alt="Instagram" />
+            </a>
+
+            <a href="https://x.com/brjx_rncn" target="_blank" rel="noopener">
+              <img src="../images/x.png" alt="X" />
+            </a>
+
+            <a href="https://www.tiktok.com/@brjx.rncn" target="_blank" rel="noopener">
+              <img src="../images/tiktok.png" alt="TikTok" />
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="../images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="../images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
+    </footer>
   </main>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 • Practical Work II
-  </footer>
-
 </body>
 </html>
