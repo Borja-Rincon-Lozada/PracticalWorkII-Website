@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UFV • Practical Work II</title>
 
   <style>
+    /* ===== Base ===== */
     :root {
       --bg: #0f1424;
       --panel: #151b2f;
@@ -13,7 +15,7 @@
       --muted: #b8bdd6;
       --border: rgba(255,255,255,.12);
       --accent: #2f6bff;
-      --radius: 12px;
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; }
@@ -25,107 +27,405 @@
       color: var(--text);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { color: inherit; }
 
-    /* ===== Topbar ===== */
-    .topbar {
+   /* ===== Topbar (igual línea que index/contact) ===== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
       background: rgba(15,20,36,.92);
       border-bottom: 1px solid var(--border);
       padding: 12px 16px;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
 
-    .topbar__title {
-      font-weight: 700;
-      font-size: 1rem;
+    .topbar__brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 220px;
     }
 
-    .topbar__nav {
-      display: flex;
-      gap: 10px;
+    .topbar__title{
+      font-weight:700;
+      font-size:1rem;
+      line-height:1.1;
     }
 
-    .topbar__link {
-      padding: 6px 10px;
-      border-radius: 8px;
-      color: var(--muted);
+    .topbar__subtitle{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.1;
     }
 
-    .topbar__link--active {
-      background: rgba(47,107,255,.18);
+    .topbar__nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .topbar__link{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:10px;
+    }
+
+    .topbar__link:hover{
+      background: rgba(255,255,255,.06);
       color: var(--text);
     }
 
-    /* ===== Main ===== */
+    .topbar__link--active{
+      background: rgba(47,107,255,.18);
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,.35);
+    }
+
+    .topbar__logo{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
+    }
+
+    .topbar__logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
+      display:block;
+    }
+    /* ===== Page ===== */
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
+      padding-top: 7.5rem; /* para que no tape la topbar fija */
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto 48px;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+      align-items: start;
     }
 
     .card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 16px;
     }
 
-    h1 {
-      margin-top: 0;
-    }
-
-    p {
+    .hero__kicker {
       color: var(--muted);
-      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .hero__title {
+      margin: 10px 0 8px;
+      font-size: 2.2rem;
+    }
+
+    .hero__text {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: inline-block;
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn--ghost {
+      background: transparent;
+    }
+
+    .hero__tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.9rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .hero__right {
+      display: grid;
+      gap: 14px;
+    }
+
+    /* ===== Sections ===== */
+    .sections {
+      margin-top: 26px;
+    }
+
+    .sections__title {
+      margin: 0 0 6px;
+      font-size: 1.7rem;
+    }
+
+    .sections__subtitle {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .tile__img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tile__body {
+      padding: 12px 14px 14px;
+    }
+
+    .tile__title {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .tile__text {
+      margin: 8px 0 10px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .tile__link {
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 7px 10px;
+      display: inline-block;
+    }
+
+    .tile__link:hover {
+      background: rgba(255,255,255,.06);
     }
 
     /* ===== Footer ===== */
-    footer {
-      margin-top: 40px;
-      padding: 16px;
+    .footer {
+      margin-top: 32px;
       border-top: 1px solid var(--border);
-      text-align: center;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: rgba(0,0,0,.08);
+      border-radius: var(--radius);
+    }
+
+    .footer__left {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer__left img {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .footer__right {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-
   <!-- Topbar -->
   <header class="topbar">
-    <div class="topbar__title">UFV • Practical Work II</div>
+    <div class="topbar__brand">
+      <div class="topbar__title">UFV • Practical Work II</div>
+      <div class="topbar__subtitle">Personal Website</div>
+    </div>
+
     <nav class="topbar__nav">
       <a class="topbar__link topbar__link--active" href="./index.html">Home</a>
       <a class="topbar__link" href="public/about.html">About</a>
       <a class="topbar__link" href="public/degree.html">Degree</a>
+      <a class="topbar__link" href="public/fce.html">FCE</a>
+      <a class="topbar__link" href="public/topic.html">Topic</a>
+      <a class="topbar__link" href="public/net.html">Net</a>
       <a class="topbar__link" href="public/contact.html">Contact</a>
+
+      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+        <img src="images/ufv_logo.png" alt="UFV logo">
+      </a>
     </nav>
   </header>
 
-  <!-- Main content -->
   <main>
-    <section class="card">
-      <h1>Welcome</h1>
-      <p>
-        This website has been created as part of Practical Work II.
-        It will include different sections such as About, Degree and Contact.
-      </p>
-      <p>
-        This is the initial structure of the homepage.
-      </p>
-    </section>
+    <div class="page">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="card">
+          <div class="hero__kicker">Made with • HTML + CSS</div>
+          <h1 class="hero__title">Welcome to my page!</h1>
+          <p class="hero__text">
+            In this website I tried to show what I have learned for the past two years studying my degree.
+            This is my second webpage development so I tried harder than last time. 
+            You could start by pry into the web or maybe get to know me a little.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="public/about.html"><b>ABOUT ME :)</b>  <small><i>(Click me)</i></small></a>
+            
+          </div>
+
+          <div class="hero__tags">
+            <span class="tag">2nd year student</span>
+            <span class="tag">Creative</span>
+            <span class="tag">Lazy...</span>
+          </div>
+        </div>
+
+        <aside class="hero__right">
+          <div class="card">
+            <h2>Personal goals</h2>
+            <ul style="margin:0; padding-left:1.2rem; color:var(--muted); line-height:1.6">
+              <li>Apply HTML & CSS </li>
+              <li>Improve Web Structure </li>
+              <li>Practice Navigation</li>
+              <li>Ensure Visual Consistency</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Quick access</h2>
+            <p class="hero__text">Go directly to my Degree page.</p>
+            <a class="btn btn--primary" href="public/degree.html">Open Degree</a>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Sections -->
+      <section id="sections" class="sections">
+        <h2 class="sections__title">Main sections</h2>
+        <p class="sections__subtitle">
+          If you are in a hurry, check at least these sections ;)
+        </p>
+
+        <div class="grid">
+          <article class="tile">
+            <img class="tile__img" src="images/me.jpg" alt="About">
+            <div class="tile__body">
+              <h3 class="tile__title">About</h3>
+              <p class="tile__text">Personal information and profile.</p>
+              <a class="tile__link" href="public/about.html">Visit →</a>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img class="tile__img" src="images/degree.jpg" alt="Degree">
+            <div class="tile__body">
+              <h3 class="tile__title">Degree</h3>
+              <p class="tile__text">Degree structure and subjects.</p>
+              <a class="tile__link" href="public/degree.html">Visit →</a>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img class="tile__img" src="images/contact.png" alt="Contact">
+            <div class="tile__body">
+              <h3 class="tile__title">Contact</h3>
+              <p class="tile__text">Contact form and information.</p>
+              <a class="tile__link" href="public/contact.html">Visit →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+       <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
+    </footer>
+        <div class="footer__right">
+          © 2025 • Practical Work II
+        </div>
+      </footer>
+    </div>
   </main>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 • Practical Work II
-  </footer>
-
 </body>
 </html>
 
