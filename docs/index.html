@@ -7,7 +7,6 @@
   <title>UFV • Practical Work II</title>
 
   <style>
-    /* ===== Base ===== */
     :root {
       --bg: #0f1424;
       --panel: #151b2f;
@@ -29,7 +28,6 @@
 
     a { color: inherit; }
 
-   /* ===== Topbar (igual línea que index/contact) ===== */
     .topbar{
       position: sticky;
       top:0;
@@ -109,7 +107,7 @@
       padding:4px;
       display:block;
     }
-    /* ===== Page ===== */
+
     main {
       padding-top: 7.5rem; /* para que no tape la topbar fija */
     }
@@ -119,7 +117,6 @@
       margin: 0 auto 48px;
     }
 
-    /* ===== Hero ===== */
     .hero {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -195,7 +192,6 @@
       gap: 14px;
     }
 
-    /* ===== Sections ===== */
     .sections {
       margin-top: 26px;
     }
@@ -258,7 +254,6 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* ===== Footer ===== */
     .footer {
       margin-top: 32px;
       border-top: 1px solid var(--border);
@@ -289,7 +284,7 @@
       font-size: 0.95rem;
     }
 
-    /* ===== Responsive ===== */
+
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -302,7 +297,7 @@
 </head>
 
 <body>
-  <!-- Topbar -->
+
   <header class="topbar">
     <div class="topbar__brand">
       <div class="topbar__title">UFV • Practical Work II</div>
@@ -326,7 +321,7 @@
 
   <main>
     <div class="page">
-      <!-- Hero -->
+
       <section class="hero">
         <div class="card">
           <div class="hero__kicker">Made with • HTML + CSS</div>
@@ -368,7 +363,7 @@
         </aside>
       </section>
 
-      <!-- Sections -->
+
       <section id="sections" class="sections">
         <h2 class="sections__title">Main sections</h2>
         <p class="sections__subtitle">
@@ -405,7 +400,7 @@
         </div>
       </section>
 
-       <!-- Footer -->
+
     <footer class="footer">
       <div class="footer__left">
         <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
