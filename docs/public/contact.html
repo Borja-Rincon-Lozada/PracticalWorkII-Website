@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFV • Practical Work II — Contact</title>
+
+    <style>
+      /* ====== Base ====== */
+      :root {
+        --bg: #0f1424;
+        --panel: #151b2f;
+        --text: #f2f4ff;
+        --muted: #b8bdd6;
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #2f6bff;
+        --radius: 14px;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a { color: inherit; }
+
+      /* ====== Topbar (igual que Home) ====== */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(15, 20, 36, 0.92);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .topbar__brand {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 220px;
+      }
+
+      .topbar__title {
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1;
+      }
+
+      .topbar__subtitle {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.1;
+      }
+
+      .topbar__nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .topbar__link {
+        text-decoration: none;
+        color: var(--muted);
+        padding: 6px 10px;
+        border-radius: 10px;
+      }
+
+      .topbar__link:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+
+      .topbar__link--active {
+        background: rgba(47, 107, 255, 0.18);
+        color: var(--text);
+        border: 1px solid rgba(47, 107, 255, 0.35);
+      }
+
+      .topbar__logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.04);
+        flex: 0 0 auto;
+      }
+
+      .topbar__logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 4px;
+        display: block;
+      }
+
+      /* ====== Page ====== */
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 18px auto 40px;
+      }
+
+      /* ====== Hero layout (igual que Home) ====== */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .hero__kicker {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero__title {
+        margin: 10px 0 8px;
+        font-size: 2.2rem;
+      }
+
+      .hero__text {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .hero__right {
+        display: grid;
+        gap: 14px;
+      }
+
+      .card__title {
+        margin: 0 0 10px;
+        font-size: 1.15rem;
+      }
+
+      .card__text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .card__list {
+        margin: 10px 0 0;
+        padding-left: 1.2rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ====== Form ====== */
+      form {
+        display: grid;
+        gap: 12px;
+        max-width: 680px;
+        margin-top: 10px;
+      }
+
+      label {
+        font-weight: 700;
+        font-size: 0.95rem;
+        display: inline-block;
+        margin-bottom: 6px;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        outline: none;
+      }
+
+      input::placeholder, textarea::placeholder {
+        color: rgba(184,189,214,0.7);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        font-weight: 700;
+      }
+
+      .btn--primary {
+        background: var(--accent);
+        border-color: transparent;
+        color: white;
+        cursor: pointer;
+        width: fit-content;
+      }
+
+      .btn--primary:hover {
+        filter: brightness(1.05);
+      }
+
+      .note {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+      /* ====== Footer (igual que Home) ====== */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.08);
+        margin-top: 18px;
+      }
+
+      .footer__left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer__left img {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+
+      .footer__right {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      /* ====== Responsive ====== */
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; }
+        .row-2 { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__title">UFV • Practical Work II</div>
+        <div class="topbar__subtitle">Personal Website</div>
+      </div>
+
+      <nav class="topbar__nav">
+        <a class="topbar__link" href=".././index.html">Home</a>
+        <a class="topbar__link" href="./about.html">About</a>
+        <a class="topbar__link" href="./degree.html">Degree</a>
+        <a class="topbar__link" href="./fce.html">FCE</a>
+        <a class="topbar__link" href="./topic.html">Topic</a>
+        <a class="topbar__link" href="./net.html">Net</a>
+        <a class="topbar__link topbar__link--active" href="./contact.html">Contact</a>
+
+        <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+          <img src="../images/ufv_logo.png" alt="UFV logo" />
+        </a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <!-- Left: Main card (like Home) -->
+        <div class="card">
+          <div class="hero__kicker">Get in touch • Contact form</div>
+          <h1 class="hero__title">Contact</h1>
+          <p class="hero__text">
+            Use this form to send me a message. (This is a front-end form; it does not send emails
+            automatically unless you connect it to a backend or a service.)
+          </p>
+
+          <form>
+            <div>
+              <label for="from">From:</label>
+              <input type="email" id="from" name="from" placeholder="john@jgraph.com" required />
+            </div>
+
+            <div>
+              <label for="subject">Subject:</label>
+              <input type="text" id="subject" name="subject" placeholder="Greeting" required />
+            </div>
+
+            <div class="row-2">
+              <div>
+                <label for="cc">CC:</label>
+                <input type="email" id="cc" name="cc" placeholder="Optional" />
+              </div>
+
+              <div>
+                <label for="bcc">BCC:</label>
+                <input type="email" id="bcc" name="bcc" placeholder="Optional" />
+              </div>
+            </div>
+
+            <div>
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button class="btn btn--primary" type="submit">Send</button>
+          </form>
+
+          <div class="note">
+            If you really want me to respond inmmediatly, download my CV and call me.
+          </div>
+        </div>
+
+        <!-- Right: Side cards (like Home) -->
+        <aside class="hero__right">
+          <div class="card">
+            <h2 class="card__title">Alternative contact</h2>
+            <p class="card__text">
+              You can also contact me via email directly.
+            </p>
+            <ul class="card__list">
+              <li>Email: <a href="mailto:YOUR_EMAIL_HERE">borjarinconlozada@gmail.com</a></li>
+              <li>GitHub in the footer</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2 class="card__title">Tips</h2>
+            <ul class="card__list">
+              <li>I take 1 to 5 yearst to respond</li>
+              <li>Write a short message</li>
+              <li>Finish your degree</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+       <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="../images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="../images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
+    </footer>
+    </main>
+  </body>
+</html>
+
+
