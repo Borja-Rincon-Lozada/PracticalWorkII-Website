@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UFV • Practical Work II — Net</title>
+
+  <style>
+    :root{--bg:#0f1424;--panel:#151b2f;--text:#f2f4ff;--muted:#b8bdd6;--border:rgba(255,255,255,.12);--accent:#2f6bff;--radius:14px;}
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
+    a{color:inherit;text-decoration:none;}
+
+    .topbar{position:sticky;top:0;z-index:10;background:rgba(15,20,36,.92);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+    .topbar__brand{display:flex;flex-direction:column;gap:2px;min-width:220px;}
+    .topbar__title{font-weight:800;font-size:1rem;}
+    .topbar__subtitle{color:var(--muted);font-size:.9rem;}
+    .topbar__nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+    .topbar__link{color:var(--muted);padding:6px 10px;border-radius:10px;}
+    .topbar__link:hover{background:rgba(255,255,255,.06);color:var(--text);}
+    .topbar__link--active{background:rgba(47,107,255,.18);color:var(--text);border:1px solid rgba(47,107,255,.35);}
+    .topbar__logo{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;}
+    .topbar__logo img{width:100%;height:100%;object-fit:contain;padding:4px;display:block;}
+
+    .page{width:min(1100px,calc(100% - 32px));margin:18px auto 40px;}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
+    h1{margin:0 0 8px;font-size:2rem;}
+    p{margin:0;color:var(--muted);line-height:1.6;}
+
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
+    .mate{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+    .mate img{width:100%;height:150px;object-fit:cover;display:block;} /* NO link aquí */
+    .mate__body{padding:12px 14px 14px;}
+    .mate__name{margin:0 0 6px;font-weight:800;}
+    .mate__hint{margin:0;color:var(--muted);line-height:1.45;}
+
+    .mate__link{
+      display:inline-block;
+      margin-top:10px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      font-weight:800;
+    }
+    .mate__link:hover{background:rgba(255,255,255,.07);}
+
+    .footer{border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,.08);border-radius:var(--radius);margin-top:18px;}
+    .footer__right{color:var(--muted);font-size:.95rem;}
+
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:600px){.grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="topbar__title">UFV • Practical Work II</div>
+      <div class="topbar__subtitle">Personal Website</div>
+    </div>
+
+    <nav class="topbar__nav">
+      <a class="topbar__link" href="../index.html">Home</a>
+      <a class="topbar__link" href="./about.html">About</a>
+      <a class="topbar__link" href="./degree.html">Degree</a>
+      <a class="topbar__link" href="./fce.html">FCE</a>
+      <a class="topbar__link" href="./topic.html">Topic</a>
+      <a class="topbar__link topbar__link--active" href="./net.html">Net</a>
+      <a class="topbar__link" href="./contact.html">Contact</a>
+
+      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+        <img src="../images/ufv_logo.png" alt="UFV logo" />
+      </a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1>Net</h1>
+      <p>Links to other classmates’ websites.</p>
+
+      <div class="grid">
+        <article class="mate">
+          <img src="../images/1.png" alt="Mate 1">
+          <div class="mate__body">
+            <h3 class="mate__name">Samuele Moranzoni</h3>
+            <p class="mate__hint">Classmate website</p>
+            <a class="mate__link" href="https://samueleufv.github.io/practicalworkII-my_website/" target="_blank" rel="noopener">Visit website →</a>
+          </div>
+        </article>
+
+        <article class="mate">
+          <img src="../images/2.png" alt="Mate 2">
+          <div class="mate__body">
+            <h3 class="mate__name">Karla Patricia</h3>
+            <p class="mate__hint">Classmate website</p>
+            <a class="mate__link" href="https://karla-casillas.github.io/Karla_Casillas_Page/" target="_blank" rel="noopener">Visit website →</a>
+          </div>
+        </article>
+
+        <article class="mate">
+          <img src="../images/3.png" alt="Mate 3">
+          <div class="mate__body">
+            <h3 class="mate__name">Jaime Felices</h3>
+            <p class="mate__hint">Classmate website</p>
+            <a class="mate__link" href="https://jaimefelgar.github.io/Practical_work_2/index.html" target="_blank" rel="noopener">Visit website →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__right">© 2025 • UFV</div>
+    </footer>
+  </main>
+</body>
+</html>
