@@ -7,7 +7,6 @@
   <title>UFV • Practical Work II — About</title>
 
   <style>
-    /* ===== Base (simple) ===== */
     :root{
       --bg:#0f1424;
       --panel:#151b2f;
@@ -30,7 +29,6 @@
 
     a{ color: inherit; }
 
-    /* ===== Topbar (igual línea que index/contact) ===== */
     .topbar{
       position: sticky;
       top:0;
@@ -111,13 +109,11 @@
       display:block;
     }
 
-    /* ===== Layout ===== */
     .page{
       width: min(1050px, calc(100% - 32px));
       margin: 18px auto 40px;
     }
 
-    /* Banner simple (cambia bastante respecto al anterior) */
     .banner{
       background: linear-gradient(120deg, rgba(47,107,255,.22), rgba(255,255,255,.02));
       border: 1px solid var(--border);
@@ -154,7 +150,7 @@
       max-width: 70ch;
     }
 
-    /* Botones sencillos */
+
     .actions{
       margin-top: 12px;
       display:flex;
@@ -190,7 +186,6 @@
       background: rgba(47,107,255,.85);
     }
 
-    /* Contenido en 2 columnas sencillas (sin grid avanzado) */
     .row{
       display:flex;
       gap:14px;
@@ -221,7 +216,6 @@
     }
 
     
-    /* CV area simple */
     .cv{
       display:flex;
       gap:14px;
@@ -252,7 +246,7 @@
       border: 1px solid rgba(255,255,255,.12);
     }
 
-    /* Social simple */
+
     .social{
       display:flex;
       gap:10px;
@@ -283,7 +277,6 @@
       display:block;
     }
 
-    /* Footer */
     .footer{
       border-top: 1px solid var(--border);
       padding: 14px 16px;
@@ -314,7 +307,6 @@
       font-size:.95rem;
     }
 
-    /* Responsive */
     @media (max-width: 920px){
       .row{ flex-direction: column; }
       .col-side{ width: 100%; }
@@ -323,7 +315,7 @@
 </head>
 
 <body>
-  <!-- Topbar -->
+
   <header class="topbar">
     <div class="topbar__brand">
       <div class="topbar__title">UFV • Practical Work II</div>
@@ -346,7 +338,7 @@
   </header>
 
   <main class="page">
-    <!-- Banner -->
+   
     <section class="banner">
       <div class="banner__row">
         <img class="avatar" src="../images/pfp.jpg" alt="Profile photo" />
@@ -366,9 +358,9 @@
       </div>
     </section>
 
-    <!-- Content row -->
+
     <div class="row">
-      <!-- Main -->
+
       <section class="col-main">
         <div class="card">
           <h2>Who I think I am</h2>
@@ -400,7 +392,7 @@
         </div>
       </section>
 
-      <!-- Side -->
+
       <aside class="col-side">
         <div class="card">
           <h2>Quick facts</h2>
@@ -433,7 +425,7 @@
       </aside>
     </div>
 
-    <!-- Footer -->
+  
     <footer class="footer">
       <div class="footer__left">
         <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
