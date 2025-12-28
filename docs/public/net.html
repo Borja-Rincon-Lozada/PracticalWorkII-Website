@@ -1,118 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UFV • Practical Work II — Net</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFV • Practical Work II — Net</title>
 
-  <style>
-    :root{--bg:#0f1424;--panel:#151b2f;--text:#f2f4ff;--muted:#b8bdd6;--border:rgba(255,255,255,.12);--accent:#2f6bff;--radius:14px;}
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
-    a{color:inherit;text-decoration:none;}
+    <style>
+      :root {
+        --bg: #0f1424;
+        --panel: #151b2f;
+        --text: #f2f4ff;
+        --muted: #b8bdd6;
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #2f6bff;
+        --radius: 14px;
+      }
 
-    .topbar{position:sticky;top:0;z-index:10;background:rgba(15,20,36,.92);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-    .topbar__brand{display:flex;flex-direction:column;gap:2px;min-width:220px;}
-    .topbar__title{font-weight:800;font-size:1rem;}
-    .topbar__subtitle{color:var(--muted);font-size:.9rem;}
-    .topbar__nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
-    .topbar__link{color:var(--muted);padding:6px 10px;border-radius:10px;}
-    .topbar__link:hover{background:rgba(255,255,255,.06);color:var(--text);}
-    .topbar__link--active{background:rgba(47,107,255,.18);color:var(--text);border:1px solid rgba(47,107,255,.35);}
-    .topbar__logo{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;}
-    .topbar__logo img{width:100%;height:100%;object-fit:contain;padding:4px;display:block;}
+      * { box-sizing: border-box; }
 
-    .page{width:min(1100px,calc(100% - 32px));margin:18px auto 40px;}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
-    h1{margin:0 0 8px;font-size:2rem;}
-    p{margin:0;color:var(--muted);line-height:1.6;}
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
 
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
-    .mate{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-    .mate img{width:100%;height:150px;object-fit:cover;display:block;} /* NO link aquí */
-    .mate__body{padding:12px 14px 14px;}
-    .mate__name{margin:0 0 6px;font-weight:800;}
-    .mate__hint{margin:0;color:var(--muted);line-height:1.45;}
+      a { color: inherit; text-decoration: none; }
 
-    .mate__link{
-      display:inline-block;
-      margin-top:10px;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      font-weight:800;
+      /* ===== Topbar (igual línea que index/contact) ===== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
+      background: rgba(15,20,36,.92);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
-    .mate__link:hover{background:rgba(255,255,255,.07);}
 
-    .footer{border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,.08);border-radius:var(--radius);margin-top:18px;}
-    .footer__right{color:var(--muted);font-size:.95rem;}
+    .topbar__brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 220px;
+    }
 
-    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:600px){.grid{grid-template-columns:1fr;}}
-  </style>
-</head>
+    .topbar__title{
+      font-weight:700;
+      font-size:1rem;
+      line-height:1.1;
+    }
 
-<body>
-  <header class="topbar">
-    <div class="topbar__brand">
-      <div class="topbar__title">UFV • Practical Work II</div>
-      <div class="topbar__subtitle">Personal Website</div>
-    </div>
+    .topbar__subtitle{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.1;
+    }
 
-    <nav class="topbar__nav">
-      <a class="topbar__link" href="../index.html">Home</a>
-      <a class="topbar__link" href="./about.html">About</a>
-      <a class="topbar__link" href="./degree.html">Degree</a>
-      <a class="topbar__link" href="./fce.html">FCE</a>
-      <a class="topbar__link" href="./topic.html">Topic</a>
-      <a class="topbar__link topbar__link--active" href="./net.html">Net</a>
-      <a class="topbar__link" href="./contact.html">Contact</a>
+    .topbar__nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
 
-      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
-        <img src="../images/ufv_logo.png" alt="UFV logo" />
-      </a>
-    </nav>
-  </header>
+    .topbar__link{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:10px;
+    }
 
-  <main class="page">
-    <section class="card">
-      <h1>Net</h1>
-      <p>Links to other classmates’ websites.</p>
+    .topbar__link:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
 
-      <div class="grid">
-        <article class="mate">
-          <img src="../images/1.png" alt="Mate 1">
-          <div class="mate__body">
-            <h3 class="mate__name">Samuele Moranzoni</h3>
-            <p class="mate__hint">Classmate website</p>
-            <a class="mate__link" href="https://samueleufv.github.io/practicalworkII-my_website/" target="_blank" rel="noopener">Visit website →</a>
-          </div>
-        </article>
+    .topbar__link--active{
+      background: rgba(47,107,255,.18);
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,.35);
+    }
 
-        <article class="mate">
-          <img src="../images/2.png" alt="Mate 2">
-          <div class="mate__body">
-            <h3 class="mate__name">Karla Patricia</h3>
-            <p class="mate__hint">Classmate website</p>
-            <a class="mate__link" href="https://karla-casillas.github.io/Karla_Casillas_Page/" target="_blank" rel="noopener">Visit website →</a>
-          </div>
-        </article>
+    .topbar__logo{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
+    }
 
-        <article class="mate">
-          <img src="../images/3.png" alt="Mate 3">
-          <div class="mate__body">
-            <h3 class="mate__name">Jaime Felices</h3>
-            <p class="mate__hint">Classmate website</p>
-            <a class="mate__link" href="https://jaimefelgar.github.io/Practical_work_2/index.html" target="_blank" rel="noopener">Visit website →</a>
-          </div>
-        </article>
+    .topbar__logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
+      display:block;
+    }
+
+      /* ===== Page ===== */
+      main { padding-top: 7.5rem; }
+
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 18px auto 40px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .hero {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(700px 280px at 20% 0%, rgba(47,107,255,0.20), transparent 60%),
+          radial-gradient(700px 280px at 90% 30%, rgba(255,255,255,0.06), transparent 60%),
+          var(--panel);
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+
+      .hero__kicker {
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
+      }
+
+      .hero__title {
+        margin: 6px 0 8px;
+        font-size: 1.7rem;
+        line-height: 1.15;
+      }
+
+      .hero__text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 85ch;
+      }
+
+      /* ===== Grid of mates ===== */
+      .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mate {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  overflow: hidden;
+}
+
+
+
+.mate__thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+
+}
+
+.mate__body {
+  padding: 12px;
+}
+
+.mate__name {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.mate__hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.mate__link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
+
+
+
+      /* ===== Footer ===== */
+      .footer {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.08);
+        margin-top: 18px;
+        border-radius: 14px;
+      }
+
+      .footer__left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer__left a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .footer__left a:hover { background: rgba(255,255,255,0.08); }
+
+      .footer__left img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer__right {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 950px) {
+        .grid { grid-template-columns: 1fr; }
+        .mate__thumb { height: 180px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__title">UFV • Practical Work II</div>
+        <div class="topbar__subtitle">Personal Website</div>
       </div>
-    </section>
 
+      <nav class="topbar__nav">
+        <a class="topbar__link" href=".././index.html">Home</a>
+        <a class="topbar__link" href="./about.html">About</a>
+        <a class="topbar__link" href="./degree.html">Degree</a>
+        <a class="topbar__link" href="./fce.html">FCE</a>
+        <a class="topbar__link" href="./topic.html">Topic</a>
+        <a class="topbar__link topbar__link--active" href="./net.html">Net</a>
+        <a class="topbar__link" href="./contact.html">Contact</a>
+
+        <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+          <img src="../images/ufv_logo.png" alt="UFV logo" />
+        </a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <div class="hero">
+        <div class="hero__kicker">Network</div>
+        <h1 class="hero__title">Classmates’ webpages</h1>
+        <p class="hero__text">
+          A small collection of my classmates’ projects. Click any card to open their website.
+        </p>
+      </div>
+
+      <section class="card">
+        <div class="grid">
+          <!-- 1 -->
+          <article class="mate">
+           
+              <img class="mate__thumb" src="../images/1.png" alt="Website preview — Moranzoni Samuele" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Moranzoni Samuele</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://samueleufv.github.io/practicalworkII-my_website/" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article class="mate">
+
+              <img class="mate__thumb" src="../images/2.png" alt="Website preview — Karla Patricia" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Karla Patricia</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://karla-casillas.github.io/Karla_Casillas_Page/" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article class="mate">
+            
+              <img class="mate__thumb" src="../images/3.png" alt="Website preview — Jaime Felices" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Jaime Felices</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://jaimefelgar.github.io/Practical_work_2/index.html" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article class="mate">
+           
+              <img class="mate__thumb" src="../images/4.png" alt="Website preview — Javier Martín" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Javier Martín</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://javiermartina.github.io/My_Web_Page_2024/" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article class="mate">
+           
+              <img class="mate__thumb" src="../images/5.png" alt="Website preview — Gabriele Borgia" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Gabriele Borgia</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://ti-voglio-bene.github.io/Pratical_Work_II/" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="mate">
+            
+              <img class="mate__thumb" src="../images/6.png" alt="Website preview — Hugo Prieto" />
+            </a>
+            <div class="mate__body">
+              <h2 class="mate__name">Hugo Prieto</h2>
+              <p class="mate__hint">Opens in a new tab.</p>
+              <a class="mate__link" href="https://alumnoufv9400629.github.io/practical_work_ii/" target="_blank" rel="noopener">
+                Visit website →
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+       <!-- Footer -->
     <footer class="footer">
-      <div class="footer__right">© 2025 • UFV</div>
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="../images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="../images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
     </footer>
-  </main>
-</body>
+    </main>
+  </body>
 </html>
