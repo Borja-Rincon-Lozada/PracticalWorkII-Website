@@ -28,7 +28,7 @@
 
       a { color: inherit; text-decoration: none; }
 
-    /* ===== Topbar (igual línea que index/contact) ===== */
+
     .topbar{
       position: sticky;
       top:0;
@@ -108,7 +108,7 @@
       padding:4px;
       display:block;
     }
-      /* ===== Page ===== */
+
       main { padding-top: 7.5rem; }
 
       .page {
@@ -130,7 +130,7 @@
         padding: 16px;
       }
 
-      /* ===== Left: mini table of contents ===== */
+  
       .aside h3 {
         margin: 0 0 10px;
         font-size: 1.05rem;
@@ -165,7 +165,7 @@
         background: rgba(47,107,255,0.14);
       }
 
-      /* ===== Right: content ===== */
+    
       .hero {
         border: 1px solid var(--border);
         border-radius: var(--radius);
@@ -214,7 +214,7 @@
         line-height: 1.65;
       }
 
-      /* Years grid */
+
       .years {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -349,7 +349,7 @@
   </head>
 
   <body>
-    <!-- Topbar -->
+
     <header class="topbar">
       <div class="topbar__brand">
         <div class="topbar__title">UFV • Practical Work II</div>
@@ -373,7 +373,7 @@
 
     <main class="page">
       <div class="layout">
-        <!-- Aside -->
+
         <aside class="card aside">
           <h3>Table of contents</h3>
           <p>Jump to the main parts of this page.</p>
@@ -385,7 +385,7 @@
 
         </aside>
 
-        <!-- Content -->
+
         <section>
           <div class="hero">
             <div class="hero__kicker">Degree overview</div>
@@ -397,7 +397,7 @@
             </p>
           </div>
 
-          <!-- Purpose -->
+
           <section id="purpose" class="card section active">
             <h2>Purpose</h2>
             <p>
@@ -407,7 +407,7 @@
             </p>
           </section>
 
-          <!-- Structure -->
+
           <section id="structure" class="card section">
             <h2>Structure</h2>
             <p>
@@ -423,7 +423,7 @@
             </p>
           </section>
 
-          <!-- Subjects -->
+         
           <section id="subjects" class="card section">
             <h2>Subjects (by year)</h2>
             <p>
@@ -431,7 +431,7 @@
             </p>
 
             <div class="years" id="years">
-              <!-- Year 1 -->
+             
               <article class="year open">
                 <div class="year__head" onclick="toggleYear(this)">
                   <div class="year__title">Year 1</div>
@@ -454,7 +454,7 @@
                 </div>
               </article>
 
-              <!-- Year 2 -->
+             
               <article class="year">
                 <div class="year__head" onclick="toggleYear(this)">
                   <div class="year__title">Year 2</div>
@@ -475,7 +475,7 @@
                 </div>
               </article>
 
-              <!-- Year 3 -->
+          
               <article class="year">
                 <div class="year__head" onclick="toggleYear(this)">
                   <div class="year__title">Year 3</div>
@@ -492,7 +492,7 @@
                 </div>
               </article>
 
-              <!-- Year 4 -->
+            
               <article class="year">
                 <div class="year__head" onclick="toggleYear(this)">
                   <div class="year__title">Year 4</div>
@@ -509,7 +509,7 @@
                 </div>
               </article>
 
-              <!-- Year 5 -->
+      
               <article class="year">
                 <div class="year__head" onclick="toggleYear(this)">
                   <div class="year__title">Year 5</div>
@@ -528,7 +528,7 @@
             </div>
           </section>
 
-           <!-- Footer -->
+     
     <footer class="footer">
       <div class="footer__left">
         <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
@@ -549,17 +549,16 @@
 
     <script>
       function openSection(id, linkEl) {
-        // Sections
+
         const sections = document.querySelectorAll(".section");
         sections.forEach((s) => s.classList.remove("active"));
         document.getElementById(id).classList.add("active");
 
-        // Aside links
+
         const links = document.querySelectorAll(".toc-link");
         links.forEach((a) => a.classList.remove("active"));
         if (linkEl) linkEl.classList.add("active");
 
-        // Scroll to top of content (nice UX)
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
