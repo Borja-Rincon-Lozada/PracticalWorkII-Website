@@ -1,0 +1,161 @@
+commit e7034f3b1a96ff355b2fe149a6db1fe742f102c1
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:36:43 2025 +0100
+
+    README final version
+
+commit 51632340747f05e672e6f574e74b43cf582a053e
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:35:39 2025 +0100
+
+    Adding folders and other files as README and .gitignore
+
+commit 46bae3212cd4dcdbf82d5d64ad962978dfd7c26a
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:30:41 2025 +0100
+
+    final version of fce
+
+commit ce138bc3d2dbde40aac6a8764cbd1e5458f8cad2
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:29:44 2025 +0100
+
+    final version of net
+
+commit 2fd521e2a1871d059375cd4dd98a445d8c8a1e5b
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:28:58 2025 +0100
+
+    final version of degree
+
+commit a19833b1e0db2ff9fa7a2ca40d11a72b2eaac477
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:27:54 2025 +0100
+
+    final version of topic
+
+commit ac39f846496179cc2a993907d144e0f7e0f6548e
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:27:11 2025 +0100
+
+    Final version of contact
+
+commit 204816ea95e30ec601d14b8129e935992182e293
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:26:16 2025 +0100
+
+    Final version about
+
+commit 2f472a4297c2f9b1a582cbffa51738ba2654950f
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:25:14 2025 +0100
+
+    Final version index
+
+commit 9a94e65a818a07102c0f6ee7b883b1c370c108d7
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:20:30 2025 +0100
+
+    Final version of net.html
+
+commit f8747ecc7f3532aa5cc6a56534afc1db8bbb6d93
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 17:08:29 2025 +0100
+
+    Final version of about and fce.html
+
+commit e1359c479f20ce5fccdfa551b1306e574976d9d9
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 16:57:26 2025 +0100
+
+    Final version of contact.html
+
+commit d74c4517f611a454c134c6f68b2c7cc9283714cc
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 16:43:49 2025 +0100
+
+    Adding final degree.html
+
+commit 6cdb221d75994a75a18862a9ab3ef4c78e594a87
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 16:35:47 2025 +0100
+
+    Adding final about.html
+
+commit 40f6e87031a1e0a31619d1b3a3c49d555a9570d9
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 15:56:22 2025 +0100
+
+    Finish index.html
+
+commit e2f4b3d9298d20a25a7b489af3f9e139a986d3ee
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 14:13:14 2025 +0100
+
+    Adding basic structure of the rest os the webpage
+
+commit 525e3cfe08d8c5ef9e1a2a8d2cadf6a5519f78b6
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 13:45:48 2025 +0100
+
+    Built and linked basic about page with index
+
+commit bcad18102975bc5918f5de2f1e60f428931bd2cd
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 13:28:09 2025 +0100
+
+    I found the style and what im going to base my website, first the index
+
+commit c1d397c79114e56baaa701f2598c3e3404514c33
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:51:39 2025 +0100
+
+    Add stylesheet
+
+commit b238e88a61ee5244ef66512ceafde27416c12227
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:48:45 2025 +0100
+
+    Add contact.html
+
+commit 39d3501e3ac365bba14fee224eeffcdccdfc920c
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:48:23 2025 +0100
+
+    Add net.html
+
+commit 3a2fdf929946582986b1935dc1259df92272c653
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:48:01 2025 +0100
+
+    Add topic.html
+
+commit 1cd432815dc683d5f4e0cf6abbcc5c9e81dee700
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:47:30 2025 +0100
+
+    Add FCE.html
+
+commit 859471786cf83711ef3c927df16f0b051e26fde9
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:47:02 2025 +0100
+
+    Add degree.html
+
+commit 57a82f371c6561bbb5bf368e3b1ba381ec60a6b2
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:45:45 2025 +0100
+
+    Add about page
+
+commit a607e9f3252b3aec080f555c9f9d10cd1c7b6dc1
+Author: Borja <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:32:44 2025 +0100
+
+    Add index.html
+
+commit c4c0e46b53e65f92eafc4fdfc770d2d08768660f
+Author: Borja-Rincon-Lozada <9402801@alumnos.ufv.es>
+Date:   Sun Dec 28 08:25:21 2025 +0100
+
+    Initial commit
