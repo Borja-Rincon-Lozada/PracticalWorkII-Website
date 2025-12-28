@@ -1,71 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UFV • Practical Work II — Topic</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFV • Practical Work II — Topic</title>
 
-  <style>
-    :root{--bg:#0f1424;--panel:#151b2f;--text:#f2f4ff;--muted:#b8bdd6;--border:rgba(255,255,255,.12);--accent:#2f6bff;--radius:14px;}
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
-    a{color:inherit;text-decoration:none;}
+    <style>
+      :root {
+        --bg: #0f1424;
+        --panel: #151b2f;
+        --panel2: rgba(255, 255, 255, 0.04);
+        --text: #f2f4ff;
+        --muted: #b8bdd6;
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #2f6bff;
+        --radius: 14px;
+      }
 
-    .topbar{position:sticky;top:0;z-index:10;background:rgba(15,20,36,.92);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-    .topbar__brand{display:flex;flex-direction:column;gap:2px;min-width:220px;}
-    .topbar__title{font-weight:800;font-size:1rem;}
-    .topbar__subtitle{color:var(--muted);font-size:.9rem;}
-    .topbar__nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
-    .topbar__link{color:var(--muted);padding:6px 10px;border-radius:10px;}
-    .topbar__link:hover{background:rgba(255,255,255,.06);color:var(--text);}
-    .topbar__link--active{background:rgba(47,107,255,.18);color:var(--text);border:1px solid rgba(47,107,255,.35);}
-    .topbar__logo{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;}
-    .topbar__logo img{width:100%;height:100%;object-fit:contain;padding:4px;display:block;}
+      * { box-sizing: border-box; }
 
-    .page{width:min(1050px,calc(100% - 32px));margin:18px auto 40px;}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
-    h1{margin:0 0 10px;font-size:2rem;}
-    p{margin:0;color:var(--muted);line-height:1.6;}
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
 
-    .footer{border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,.08);border-radius:var(--radius);margin-top:18px;}
-    .footer__right{color:var(--muted);font-size:.95rem;}
-  </style>
-</head>
+      a { color: inherit; text-decoration: none; }
 
-<body>
-  <header class="topbar">
-    <div class="topbar__brand">
-      <div class="topbar__title">UFV • Practical Work II</div>
-      <div class="topbar__subtitle">Personal Website</div>
-    </div>
 
-    <nav class="topbar__nav">
-      <a class="topbar__link" href="../index.html">Home</a>
-      <a class="topbar__link" href="./about.html">About</a>
-      <a class="topbar__link" href="./degree.html">Degree</a>
-      <a class="topbar__link" href="./fce.html">FCE</a>
-      <a class="topbar__link topbar__link--active" href="./topic.html">Topic</a>
-      <a class="topbar__link" href="./net.html">Net</a>
-      <a class="topbar__link" href="./contact.html">Contact</a>
+      .topbar{
+        position: sticky;
+        top:0;
+        z-index:10;
+        background: rgba(15,20,36,.92);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 16px;
 
-      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
-        <img src="../images/ufv_logo.png" alt="UFV logo" />
-      </a>
-    </nav>
-  </header>
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+      }
 
-  <main class="page">
-    <section class="card">
-      <h1>Topic</h1>
-      <p>
-        This page will explain the chosen topic for the project. Add your final content here.
-      </p>
-    </section>
+      .topbar__brand{
+        display:flex;
+        flex-direction:column;
+        gap:2px;
+        min-width: 220px;
+      }
 
-    <footer class="footer">
-      <div class="footer__right">© 2025 • UFV</div>
-    </footer>
-  </main>
-</body>
+      .topbar__title{
+        font-weight:700;
+        font-size:1rem;
+        line-height:1.1;
+      }
+
+      .topbar__subtitle{
+        font-size:.9rem;
+        color:var(--muted);
+        line-height:1.1;
+      }
+
+      .topbar__nav{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+      }
+
+      .topbar__link{
+        text-decoration:none;
+        color:var(--muted);
+        padding:6px 10px;
+        border-radius:10px;
+      }
+
+      .topbar__link:hover{
+        background: rgba(255,255,255,.06);
+        color: var(--text);
+      }
+
+      .topbar__link--active{
+        background: rgba(47,107,255,.18);
+        color: var(--text);
+        border: 1px solid rgba(47,107,255,.35);
+      }
+
+      .topbar__logo{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:34px;
+        height:34px;
+        border-radius:10px;
+        border:1px solid var(--border);
+        overflow:hidden;
+        background: rgba(255,255,255,.04);
+        flex: 0 0 auto;
+      }
+
+      .topbar__logo img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        padding:4px;
+        display:block;
+      }
+
+  
+      main { padding-top: 1.2rem; }
+
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 18px auto 40px;
+      }
+
+  
+      .banner {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(700px 260px at 20% 0%, rgba(47,107,255,0.20), transparent 60%),
+          radial-gradient(700px 260px at 80% 30%, rgba(255,255,255,0.06), transparent 60%),
+          var(--panel);
+        padding: 18px;
+        margin-bottom: 14px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .banner__kicker {
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
+      }
+
+      .banner__title {
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1.15;
+      }
+
+      .banner__subtitle {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 70ch;
+      }
+
+      .banner__chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+
+      .chip {
+        font-size: 0.9rem;
+        color: var(--muted);
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .content-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+
+      .content-head h1 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .definition {
+        border: 1px solid rgba(255,255,255,0.12);
+        background: var(--panel2);
+        border-radius: 12px;
+        padding: 10px 12px;
+        min-width: 220px;
+        max-width: 360px;
+      }
+
+      .definition p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 0.95rem;
+      }
+
+      details.block {
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-top: 10px;
+      }
+
+      details.block summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--text);
+        list-style: none;
+      }
+
+      details.block summary::-webkit-details-marker { display: none; }
+
+      details.block .block__body {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .block__body ul {
+        margin: 8px 0 0;
+        padding-left: 1.1rem;
+      }
+
+
+
+      .resources {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .resources h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+      }
+
+      .resource-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .resource {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .resource:hover {
+        background: rgba(255,255,255,0.08);
+      }
+
+      .resource img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+      }
+
+
+      .footer {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.08);
+        margin-top: 18px;
+        border-radius: 14px;
+      }
+
+      .footer__left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer__left a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .footer__left a:hover {
+        background: rgba(255,255,255,0.08);
+      }
+
+      .footer__left img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer__right {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 900px) {
+        .definition { max-width: none; width: 100%; }
+        .content-head { flex-direction: column; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__title">UFV • Practical Work II</div>
+        <div class="topbar__subtitle">Personal Website</div>
+      </div>
+
+      <nav class="topbar__nav">
+        <a class="topbar__link" href=".././index.html">Home</a>
+        <a class="topbar__link" href="./about.html">About</a>
+        <a class="topbar__link" href="./degree.html">Degree</a>
+        <a class="topbar__link" href="./fce.html">FCE</a>
+        <a class="topbar__link topbar__link--active" href="./offtopic.html">Topic</a>
+        <a class="topbar__link" href="./net.html">Net</a>
+        <a class="topbar__link" href="./contact.html">Contact</a>
+
+        <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+          <img src="../images/ufv_logo.png" alt="UFV logo" />
+        </a>
+      </nav>
+    </header>
+
+    <main class="page">
+
+      <section class="banner">
+        <h1 class="banner__title">Agriculture Robotics</h1>
+        <p class="banner__subtitle">
+          In this practical work we explore in depth the use of robotics in agriculture as well as its possible future.
+        </p>
+        <div class="banner__chips" aria-label="tags">
+          <span class="chip">Agriculture</span>
+          <span class="chip">Robotics</span>
+          <span class="chip">AI</span>
+          <span class="chip">IoT</span>
+        </div>
+      </section>
+
+
+      <section class="card">
+        <div class="content-head">
+          <h1>Overview</h1>
+
+          <div class="definition">
+            <p>
+              <b>Agriculture robotics</b> refers to automated machines used to perform farming tasks, such as planting,
+              harvesting, and monitoring crops, often with minimal human intervention.
+            </p>
+          </div>
+        </div>
+
+        <details class="block" open>
+          <summary>1) Objectives</summary>
+          <div class="block__body">
+            <ul>
+              <li>Analyse the current and future role of agricultural robots in the automation of farm work.</li>
+              <li>Describe what an agricultural robot is and describe its main types.</li>
+              <li>Evaluate the benefits and limitations of their use compared to traditional methods.</li>
+              <li>Analyze future trends, especially the integration of Artificial Intelligence (AI) and the Internet of Things (IoT).</li>
+              <li>Reflect on the ethical, social, and environmental consequences of using robots in agriculture.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="block">
+          <summary>2) Description</summary>
+          <div class="block__body">
+            A robot is a machine capable of acting on its own through three essential components: sensors, actuators, and programs.
+            An agricultural robot is “any robotic device that can improve agricultural processes, by taking over many of the farmer’s duties
+            that are slow or labour intensive.”
+          </div>
+        </details>
+
+        <details class="block">
+          <summary>3) Different types</summary>
+          <div class="block__body">
+            <ul>
+              <li>Planting and seeding robots</li>
+              <li>Harvesting and picking robots</li>
+              <li>Drones</li>
+              <li>Crop sprayers</li>
+              <li>Weeding and mowing machines</li>
+              <li>Sorting and grading robots</li>
+              <li>Autonomous tractors</li>
+              <li>Livestock management robots</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="block">
+          <summary>4) Advantages and limitations</summary>
+          <div class="block__body">
+            <ul>
+              <li><b>Increased efficiency and productivity:</b> operate continuously (24/7) without needing breaks.</li>
+              <li><b>Precision and consistency:</b> apply fertilisers or pesticides only where needed.</li>
+              <li><b>Enhanced sustainability:</b> optimising resource usage and reduce the environmental impact of agriculture.</li>
+              <li><b>Maintenance is complicated and expensive:</b> regular maintenance, professional servicing and spare parts are costly.</li>
+              <li><b>Potential job losses:</b> risk of reduced employment opportunities within farming and rural communities.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="block">
+          <summary>5) Ethical view</summary>
+          <div class="block__body">
+            <ul>
+              <li>Centralization of the power</li>
+              <li>Data and privacy of the farmers</li>
+              <li>Cybersecurity Concerns</li>
+              <li>Sustainability</li>
+              <li>Environmental Impact</li>
+              <li>Job displacement</li>
+            </ul>
+          </div>
+        </details>
+
+    <div class="resources">
+  <h3>Extra information to research</h3>
+
+  <div class="resource-row">
+    <a class="resource resource--big" href="https://riunet.upv.es/server/api/core/bitstreams/59f101f5-f8e4-48e0-8852-a0b04bfe26e4/content" target="_blank" rel="noopener">
+      <img src="../images/research.jpeg" alt="Field Robotics information" />
+    </a>
+
+    <a class="resource resource--big" href="https://portalcientifico.urjc.es/en/ipublic/item/9774630" target="_blank" rel="noopener">
+      <img src="../images/research2.jpg" alt="Agro Robotics information" />
+    </a>
+  </div>
+</div>
+
+
+
+      <footer class="footer">
+        <div class="footer__left">
+          <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+            <img src="../images/linkedin.png" alt="LinkedIn" />
+          </a>
+          <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+            <img src="../images/github.png" alt="GitHub" />
+          </a>
+        </div>
+
+        <div class="footer__right">
+          <span>© 2025 • UFV</span>
+        </div>
+      </footer>
+    </main>
+  </body>
 </html>
-
