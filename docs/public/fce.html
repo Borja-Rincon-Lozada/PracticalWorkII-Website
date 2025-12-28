@@ -1,114 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UFV • Practical Work II — FCE</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFV • Practical Work II — FCE</title>
 
-  <style>
-    :root{--bg:#0f1424;--panel:#151b2f;--text:#f2f4ff;--muted:#b8bdd6;--border:rgba(255,255,255,.12);--accent:#2f6bff;--radius:14px;}
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);}
-    a{color:inherit;}
+    <style>
+      :root {
+        --bg: #0f1424;
+        --panel: #151b2f;
+        --panel2: rgba(255, 255, 255, 0.04);
+        --text: #f2f4ff;
+        --muted: #b8bdd6;
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #2f6bff;
+        --radius: 14px;
+      }
 
-    .topbar{position:sticky;top:0;z-index:10;background:rgba(15,20,36,.92);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-    .topbar__brand{display:flex;flex-direction:column;gap:2px;min-width:220px;}
-    .topbar__title{font-weight:800;font-size:1rem;}
-    .topbar__subtitle{color:var(--muted);font-size:.9rem;}
-    .topbar__nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
-    .topbar__link{text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:10px;}
-    .topbar__link:hover{background:rgba(255,255,255,.06);color:var(--text);}
-    .topbar__link--active{background:rgba(47,107,255,.18);color:var(--text);border:1px solid rgba(47,107,255,.35);}
-    .topbar__logo{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;}
-    .topbar__logo img{width:100%;height:100%;object-fit:contain;padding:4px;display:block;}
+      * { box-sizing: border-box; }
 
-    .page{width:min(1050px,calc(100% - 32px));margin:18px auto 40px;}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
-    h1{margin:0 0 10px;font-size:2rem;}
-    p{margin:0;color:var(--muted);line-height:1.6;}
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
 
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
-    .tabbtn{
-      padding:8px 10px;
-      border-radius:12px;
+      a { color: inherit; text-decoration: none; }
+
+ /* ===== Topbar (igual línea que index/contact) ===== */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
+      background: rgba(15,20,36,.92);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .topbar__brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 220px;
+    }
+
+    .topbar__title{
+      font-weight:700;
+      font-size:1rem;
+      line-height:1.1;
+    }
+
+    .topbar__subtitle{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.1;
+    }
+
+    .topbar__nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .topbar__link{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:10px;
+    }
+
+    .topbar__link:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    .topbar__link--active{
+      background: rgba(47,107,255,.18);
+      color: var(--text);
+      border: 1px solid rgba(47,107,255,.35);
+    }
+
+    .topbar__logo{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:10px;
       border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font-weight:800;
-      cursor:pointer;
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      flex: 0 0 auto;
     }
-    .tabbtn:hover{background:rgba(255,255,255,.07);}
-    .tabbtn.active{border-color:rgba(47,107,255,.5);background:rgba(47,107,255,.15);}
 
-    .tab{display:none;margin-top:14px;}
-    .tab.active{display:block;}
+    .topbar__logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:4px;
+      display:block;
+    }
+      /* ===== Page ===== */
+      main { padding-top: 7.5rem; }
 
-    .footer{border-top:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(0,0,0,.08);border-radius:var(--radius);margin-top:18px;}
-    .footer__right{color:var(--muted);font-size:.95rem;}
-  </style>
-</head>
+      .page {
+        width: min(1100px, calc(100% - 32px));
+        margin: 18px auto 40px;
+      }
 
-<body>
-  <header class="topbar">
-    <div class="topbar__brand">
-      <div class="topbar__title">UFV • Practical Work II</div>
-      <div class="topbar__subtitle">Personal Website</div>
-    </div>
+      /* NUEVO: hero compacto + “tabs” */
+      .hero {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(700px 280px at 20% 0%, rgba(47,107,255,0.20), transparent 60%),
+          radial-gradient(700px 280px at 90% 30%, rgba(255,255,255,0.06), transparent 60%),
+          var(--panel);
+        padding: 18px;
+        display: grid;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
 
-    <nav class="topbar__nav">
-      <a class="topbar__link" href="../index.html">Home</a>
-      <a class="topbar__link" href="./degree.html">Degree</a>
-      <a class="topbar__link topbar__link--active" href="./fce.html">FCE</a>
-      <a class="topbar__link" href="./contact.html">Contact</a>
+      .hero__kicker {
+        color: var(--muted);
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
+      }
 
-      <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
-        <img src="../images/ufv_logo.png" alt="UFV logo" />
-      </a>
-    </nav>
-  </header>
+      .hero__title {
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1.15;
+      }
 
-  <main class="page">
-    <section class="card">
-      <h1>Fundamentals of Computer Engineering</h1>
-      <p>Summary, units and assignments (simple tabs).</p>
+      .hero__text {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        max-width: 80ch;
+      }
 
-      <div class="tabs">
-        <button class="tabbtn active" onclick="openTab('desc', this)">Description</button>
-        <button class="tabbtn" onclick="openTab('units', this)">Units</button>
-        <button class="tabbtn" onclick="openTab('work', this)">Assignments</button>
+      .tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+
+      .tab {
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        color: var(--muted);
+        padding: 8px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.25s ease;
+      }
+
+      .tab:hover {
+        background: rgba(255,255,255,0.08);
+        color: var(--text);
+      }
+
+      .tab--active {
+        background: rgba(47,107,255,0.18);
+        color: var(--text);
+        border-color: rgba(47,107,255,0.35);
+      }
+
+      /* Cards area */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .muted { color: var(--muted); }
+
+      /* Units list (en vez de tabla enorme) */
+      .units {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .unit {
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+        padding: 10px 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .unit__title {
+        margin: 0;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 0.98rem;
+        line-height: 1.35;
+      }
+
+      .unit__link {
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: all 0.25s ease;
+      }
+
+      .unit__link:hover {
+        background: rgba(255,255,255,0.10);
+      }
+
+      /* Assignments */
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.04);
+        font-weight: 700;
+        transition: all 0.25s ease;
+      }
+
+      .btn:hover { background: rgba(255,255,255,0.10); }
+
+      .btn--primary {
+        background: var(--accent);
+        border-color: transparent;
+        color: white;
+      }
+
+      .btn--primary:hover { filter: brightness(1.05); }
+
+      /* Sections visibility */
+      .section { display: none; }
+      .section.active { display: block; }
+
+      /* Footer */
+      .footer {
+        border-top: 1px solid rgba(255,255,255,0.12);
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.08);
+        margin-top: 18px;
+        border-radius: 14px;
+      }
+
+      .footer__left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .footer__left a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .footer__left a:hover { background: rgba(255,255,255,0.08); }
+
+      .footer__left img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer__right {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 900px) {
+        .topbar { left: 1rem; right: 1rem; }
+        .units { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <div class="topbar__title">UFV • Practical Work II</div>
+        <div class="topbar__subtitle">Personal Website</div>
       </div>
 
-      <div id="desc" class="tab active">
-        <p>
-          This course introduces computer engineering concepts and practical web foundations.
-          (Add your final text here.)
+      <nav class="topbar__nav">
+        <a class="topbar__link" href=".././index.html">Home</a>
+        <a class="topbar__link" href="./about.html">About</a>
+        <a class="topbar__link" href="./degree.html">Degree</a>
+        <a class="topbar__link topbar__link--active" href="./Fundamentos_De_Informatica.html">FCE</a>
+        <a class="topbar__link" href="./topic.html">Topic</a>
+        <a class="topbar__link" href="./net.html">Net</a>
+        <a class="topbar__link" href="./contact.html">Contact</a>
+
+        <a class="topbar__logo" href="https://www.ufv.es" target="_blank" rel="noopener">
+          <img src="../images/ufv_logo.png" alt="UFV logo" />
+        </a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero__kicker">Year 1 • Subject hub</div>
+        <h1 class="hero__title">Fundamentals of Computer Engineering (FCE)</h1>
+        <p class="hero__text">
+          A clean hub for the subject: a quick description, the units (PDFs), and the practical assignments.
+          No left sidebar, just direct access.
         </p>
-      </div>
 
-      <div id="units" class="tab">
-        <p>List the units with links to PDFs here.</p>
-      </div>
+        <!-- Tabs -->
+        <div class="tabs" role="tablist" aria-label="FCE sections">
+          <button class="tab tab--active" type="button" onclick="showContent('description', this)">
+            Description
+          </button>
+          <button class="tab" type="button" onclick="showContent('units', this)">
+            Units (PDF)
+          </button>
+          <button class="tab" type="button" onclick="showContent('assignments', this)">
+            Practical work
+          </button>
+        </div>
+      </section>
 
-      <div id="work" class="tab">
-        <p>Add links to Practical Work I and II resources here.</p>
-      </div>
-    </section>
+      <div class="grid">
+        <!-- Description -->
+        <section id="description" class="card section active">
+          <h2>Description of the subject</h2>
+          <p>
+            Fundamentals of Computer Engineering (FCE) is a 6-ECTS, first-year, first-semester basic training course that provides a global view of Computer Engineering
+             from both an academic and professional perspective. It introduces the foundations behind the discipline (including mathematics, 
+             physics, anthropology, and ethics) and helps students understand the social impact and real role of computer engineers today. 
+             The course is structured in two parts: (1) Theoretical Foundations (history and context of ICT, hardware/software, operating 
+             systems, networks, emerging trends, and data/big-data fundamentals with legal/ethical aspects) and (2) Practical Skills, an 
+             introduction to web development, including Git/GitHub, HTML5, and CSS3, with an expected workload of about 150 hours. This appears in the course
+              guide itself.
+          </p>
+        </section>
 
+        <!-- Units -->
+        <section id="units" class="card section">
+          <h2>Units covered (PDF downloads)</h2>
+          <p class="muted">
+            Click “PDF” to open each unit. 
+
+          <div class="units">
+            <div class="unit">
+              <div class="unit__title">Unit 1: Background and historical perspectives</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 1 - Background and historical perspectives.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 2: The current context of Computer Science</div>
+              <a class="unit__link" href="../FCE/BLOCK 1/FCE - Unit 2 - The current context of Computer Science.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 3: Computer Engineering as a Degree and Profession</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 3 - Computer Engineering as a Degree and Profession.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 4: Hardware</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 4 - Hardware.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 5: Software</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 5 - Software.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 6: Operating Systems</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 6 - Operating Systems.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 7: Networks</div>
+              <a class="unit__link" href="../FCE/BLOCK 2/FCE - Unit 7 - Networks.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 8: New trends I</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 8 - New trends.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            
+            <div class="unit">
+              <div class="unit__title">Unit 9.1: Information and Data I</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 9 - 1 - Information and Data.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 9.2: Information and Data II</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 9 - 2 - Information and Data.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 10: Information and Big Data</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 10 - Information and Big Data.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 11: Introduction to software development</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 1 - Introduction to Software Development.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 12: Introduction to software development II</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 2 - Introduction to Software Development II.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 13: Introduction to web programming</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 3 - Introduction to web programming.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 14: HTML</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 4 - HTML.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+
+            <div class="unit">
+              <div class="unit__title">Unit 15: CSS</div>
+              <a class="unit__link" href="../FCE/FCE - Unit 5 - CSS.pdf" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Assignments -->
+        <section id="assignments" class="card section">
+          <h2>Practical assignments</h2>
+          <p class="muted">
+            Quick links to the files and repositories used in the subject.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn--primary" href="../FCE/Agrorobotict (1).pdf" target="_blank" rel="noopener">
+              Practical Work I — Presentation
+            </a>
+
+            <a class="btn" href="../FCE/FCE_practical_work_1_Group6.pdf" target="_blank" rel="noopener">
+              Practical Work I — Document
+            </a>
+
+        
+            <a class="btn" href=".././index.html" title="Back to this website home">
+              Practical Work II — Website
+            </a>
+
+            <a class="btn" href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noopener">
+              Practical Work II — GitHub
+            </a>
+          </div>
+
+        </section>
+      </div>
+ <!-- Footer -->
     <footer class="footer">
-      <div class="footer__right">© 2025 • UFV</div>
+      <div class="footer__left">
+        <a href="https://www.linkedin.com/in/borja-rinc%C3%B3n-lozada-792656383/" target="_blank" rel="noreferrer">
+          <img src="../images/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/Borja-Rincon-Lozada" target="_blank" rel="noreferrer">
+          <img src="../images/github.png" alt="GitHub" />
+        </a>
+      </div>
+
+      <div class="footer__right">
+        <span>© 2025 • UFV</span>
+      </div>
     </footer>
-  </main>
+    </main>
 
-  <script>
-    function openTab(id, btn){
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+    <script>
+      function showContent(contentId, btn) {
+        // Sections
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((s) => s.classList.remove("active"));
+        document.getElementById(contentId).classList.add("active");
 
-      document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-  </script>
-</body>
+        // Tabs
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach((t) => t.classList.remove("tab--active"));
+        btn.classList.add("tab--active");
+      }
+    </script>
+  </body>
 </html>
-
 
